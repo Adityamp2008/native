@@ -1,5 +1,12 @@
 <?php
 include 'config.php';
+
+
+session_start();
+if (!isset($_SESSION['uname'])) {
+    header("Location: login.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +38,8 @@ include 'config.php';
           <th scope="col">Nama</th>
           <th scope="col">Kelas</th>
           <th scope="col">Jurusan</th>
+          <th scope="col">User name</th>
+          <th scope="col">Password</th>
           <th scope="col">Aksi</th>
         </tr>
       </thead>
@@ -45,6 +54,8 @@ include 'config.php';
               <td>{$row['nama']}</td>
               <td>{$row['kelas']}</td>
               <td>{$row['jurusan']}</td>
+              <td>{$row['uname']}</td>
+              <td>{$row['pass']}</td>
               <td  class='text-center'>
                   <a href='edit.php?id={$row['id']}' class='btn btn-warning btn-sm'><i class='bi bi-pencil-fill'></i></a>
                   <a href='hapus.php?id={$row['id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"apakah anda ingin menghapus data ini?\");'><i class='bi bi-trash3-fill'></i></a>
@@ -60,10 +71,7 @@ include 'config.php';
   </div>
   </div>
 
-  <!-- <div class="bg-dark text-white w-100 fixed-bottom py-2 text-center">
-    <div class="bg-white w-100" style="height: 1vh;"></div>
-    <span class="fs-6 text-">2025 - aditya m.p</span>
-  </div> -->
+  <!-- 2025 - aditya m.p -->
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

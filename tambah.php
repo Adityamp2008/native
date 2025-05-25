@@ -6,13 +6,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $kelas = $_POST['kelas'];
     $jurusan = $_POST['jurusan'];
 
+    $uname = str_replace(' ', '', substr($nama, 0, 10 ));
+    $pass = 12345678;
+
     if($nama == "" || $kelas =="" || $jurusan ==""){
         echo "<div class='alert alert-danger'>!!Data tidak boleh kosong bos!!</div>";
     }else{
-    $query = "INSERT INTO data (nama, kelas, jurusan) VALUES ('$nama', '$kelas', '$jurusan')";
+    $query = "INSERT INTO data (nama, kelas, jurusan,uname, pass) VALUES ('$nama', '$kelas', '$jurusan','$uname','$pass' )";
     $result = mysqli_query($conn, $query);
 if ($result) {
     echo "<div class='alert alert-info'>Data sudah masuk salam terimakasih</div>";
+    header("location: index.php");
     } else {
         echo "<div class='alert alert-danger'>Data gagal masuk bos</div>";
         }
@@ -49,7 +53,6 @@ if ($result) {
                     <input type="text" name="jurusan" id="jurusan" class="form-control" require>
                  </div>
                  <button type="submit" class="btn btn-success">Kirim</button>
-                 <a href="index.php" class="btn btn-secondary">Kembali</a>
             </form>
         </div>
       </div>
