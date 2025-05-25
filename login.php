@@ -5,8 +5,6 @@ include "config.php";
 if (isset($_POST['login'])) {
     $username = $_POST['uname'];
     $password = $_POST['pass'];
-
-    // Login sederhana (belum aman, tapi cocok buat belajar SMK)
     $query = "SELECT * FROM data WHERE uname = '$username' AND pass = '$password'";
     $result = mysqli_query($conn, $query);
 
